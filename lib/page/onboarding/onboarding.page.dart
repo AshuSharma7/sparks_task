@@ -177,7 +177,7 @@ class _OnboardingPageState extends State<OnboardingPage>
       _videoController.setVolume(0);
       setState(() {});
     });
-
+    if (cameras.isNotEmpty) {
     controller = CameraController(cameras[0], ResolutionPreset.medium);
     controller.initialize().whenComplete(() {
       setState(() {
@@ -197,6 +197,9 @@ class _OnboardingPageState extends State<OnboardingPage>
         }
       }
     });
+    } else {
+      _videoController.play();
+    }
 
     super.initState();
   }
